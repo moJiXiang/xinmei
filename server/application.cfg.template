@@ -1,0 +1,10 @@
+PORT = 3300
+DEBUG = True
+
+MONGODB_HOST = 'localhost'
+MONGODB_PORT = 27017
+MONGODB_DB = 'xinmei-cms'
+
+SECRET_KEY = 'mojixiang'
+
+API_URI = '/api/v1'

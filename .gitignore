@@ -1,0 +1,7 @@
+*.py[cod]
+build
+venv
+lib
+node_modules
+.DS_Store
+application.cfg
