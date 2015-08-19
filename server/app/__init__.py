@@ -21,4 +21,4 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     return response
 
-from app.apis import enterprise_api
+from app.apis import enterprise_api, test_api
