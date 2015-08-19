@@ -1,4 +1,4 @@
-PORT = 3300
+PORT = 3200
 DEBUG = True
 
 MONGODB_HOST = 'localhost'
