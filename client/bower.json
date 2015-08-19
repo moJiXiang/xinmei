@@ -1,0 +1,24 @@
+{
+  "name": "mjxblog-pfvp",
+  "version": "1.0.0",
+  "authors": [
+    "moJiXiang <mojixiang1102@gmail.com>"
+  ],
+  "description": "xinmei",
+  "keywords": [
+    "data",
+    "blog"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/static/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
