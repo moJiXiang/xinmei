@@ -10,6 +10,7 @@ Flask-HTTPAuth==2.5.0
 flask-mongoengine==0.7.1
 Flask-RESTful==0.3.4
 Flask-WTF==0.12
+gunicorn==19.3.0
 itsdangerous==0.24
 Jinja2==2.8
 kombu==3.0.26
