@@ -1,7 +1,5 @@
 ## 信美项目文档
 
----
-
 **版本号** 0.0.1
 
 ### 介绍
@@ -15,6 +13,7 @@
 ### 项目部署
 
 view [gunicorn](http://docs.gunicorn.org/en/latest/deploy.html) document
+view [celery](http://docs.jinkan.org/docs/celery/) document
 
 ```
 git clone https://github.com/moJiXiang/xinmei.git
@@ -38,7 +37,7 @@ source venv/bin/active
 pip install -r requirements.txt
 
 # deploy server api
-# use run.pid, then we can use kill 'cat run.pid' can stop gunicorn process
+# use run.pid, then we can use kill 'cat run.pid' stop gunicorn process
 gunicorn run:app -p run.pid -b 127.0.0.1:8000 -D
 
 sudo vim /etc/nginx/nginx.conf(apt-get nginx on ubuntu system)
@@ -57,4 +56,15 @@ server {
                 proxy_pass http://127.0.0.1:8000;
         }
 }
+
+# deploy celery with development environment
+cd server
+source venv/bin/active
+celery -A app.tasks worker --loglevel=info
+
+# install rabbitmq
+apt-get rabbitmq(ubuntu)
+brew install rabbitmq(mac)
+
+sudo rabbitmq-server
 ```
