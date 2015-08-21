@@ -6,3 +6,5 @@ node_modules
 .DS_Store
 application.cfg
 *.log
+client/index.html
+client/webpack.config.js

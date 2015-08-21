@@ -5,8 +5,8 @@ module.exports = {
     //     index:  "./index.js"
     //
     // },
-    // entry: './index.js',
-    entry: ["webpack/hot/dev-server",'./index.js'],
+    entry: './index.js',
+    // entry: ["webpack/hot/dev-server",'./index.js'],
     output: {
         path: "./build",
         publicPath: "/build/",
