@@ -12,8 +12,8 @@
 
 ### 项目部署
 
-view [gunicorn](http://docs.gunicorn.org/en/latest/deploy.html) document
-view [celery](http://docs.jinkan.org/docs/celery/) document
+- view [gunicorn](http://docs.gunicorn.org/en/latest/deploy.html) document
+- view [celery](http://docs.jinkan.org/docs/celery/) document
 
 ```
 git clone https://github.com/moJiXiang/xinmei.git

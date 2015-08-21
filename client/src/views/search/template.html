@@ -1,0 +1,17 @@
+<div class="slogan-container">
+
+    <div class="index-search-w" id="index-search-w">
+        <form class="form-inline"  v-on="submit:queryEntsByName">
+            <input type="text" class="index-search form-control" placeholder="信美大数据分析平台" v-model="enterprise">
+            <input type="submit" class="btn" value="搜索">
+        </form>
+        <div class="results-w" v-if="show" v-transition>
+            <ul class="results list-unstyled">
+                <li v-repeat="enterprises">
+                    <a href="#/enterprises/{{lcid}}">{{entname}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

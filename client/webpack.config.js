@@ -1,15 +1,16 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
-    entry: {
-        // index:  ["webpack/hot/dev-server", "./index.js"]
-        index:  "./index.js"
-
-    },
+    // entry: {
+    //     // index:  ["webpack/hot/dev-server", "./index.js"]
+    //     index:  "./index.js"
+    //
+    // },
+    entry: ["webpack/hot/dev-server",'./index.js'],
     output: {
         path: "./build",
         publicPath: "/build/",
-        filename: "[name].build.js"
+        filename: "build.js"
     },
     module: {
         loaders: [{
@@ -31,6 +32,6 @@ module.exports = {
         extensions: ['', '.js', '.json', '.coffee', '.less', '.css']
     },
     plugins: [
-        new ExtractTextPlugin("[name].style.css")
+        new ExtractTextPlugin("style.css")
     ]
 }

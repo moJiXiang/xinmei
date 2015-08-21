@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.config.from_pyfile("../application.cfg")
 
 db = MongoEngine(app)
+
 api = Api(app)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 auth = HTTPBasicAuth()
@@ -21,4 +22,4 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     return response
 
-from app.apis import enterprise_api, test_api
+from app.apis import enterprise, test, auth

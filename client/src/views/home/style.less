@@ -1,5 +1,218 @@
-@import "../../variables.less";
+/* 首页大图样式 */
+@import '../../less/variables.less';
 
-.yellow {
-    color: @yellow;
+.slogan-container {
+	width: 100%;
+	height: 428px;
+	background: url('/img/index_bg.png');
+
+	h2 {
+		position: absolute;
+		width: 100%;
+		top: 170px;
+		color: #fff
+	}
+	p {
+		position: relative;
+		top: 180px;
+		width: 60%;
+		margin: 0 auto;
+		color: #fff;
+	}
+}
+
+/* 首页tab切换样式 */
+.services-tabs {
+	.nav {
+		width: @percent70;
+		margin: 0 auto;
+		margin-top: -20px;
+		border-radius: 5px;
+		overflow: hidden;
+		border: 1px solid #ddd;
+		background: rgba(248, 248, 248, 1);
+		li {
+			float: left;
+			height: 82px;
+			padding: 0;
+			background: #eee;
+			border-right: 1px solid #ddd;
+			&:nth-child(3) {
+				border-right: none;
+			}
+			&.active {
+				background: #fff;
+			}
+			a {
+				display: block;
+				height: 100%;
+				padding: 0;
+				text-align: center;
+				line-height: 82px
+			}
+		}
+	}
+	.tab-content {
+		width: @percent70;
+		height: 250px;
+		margin: 0 auto;
+		.tab-pane {
+			padding-top: 30px;
+			ul.tab-content-ul {
+				overflow: hidden;
+				padding: 0;
+				li {
+					list-style: none;
+					dl {
+						dt {
+							img {
+								width: 100px;
+								height: 50px;
+							}
+						}
+					}
+				}
+			}
+			.carousel-control {
+				span.glyphicon {
+					color: @darkblue;
+				}
+			}
+			.carousel-control.left {
+				background-image: none;
+				left: -137px;
+			}
+			.carousel-control.right {
+				background-image: none;
+				right: -137px;
+				left: auto;
+			}
+		}
+	}
+}
+
+/* 系统介绍 */
+.system-introduce {
+	height: 480px;
+	padding: 20px 0 20px 0;
+	background: @darkblue;
+	.container {
+		width: 80%;
+	}
+	.sysintro-title {
+		width: 120px;
+		margin: 0 auto;
+		margin-bottom: 20px;
+		padding: 10px 10px;
+		border-radius: 15px;
+		background: #fff;
+		color: @darkblue;
+		font-size: 14px;
+		text-align: center;
+	}
+	.system-nav-tabs {
+		width: 340px;
+		margin: 0 auto;
+		overflow: hidden;
+		li {
+			width: 86px;
+			height: 24px;
+			border-radius: 20px;
+			list-style: none;
+			float: left;
+			margin-right: 5px;
+			border: 1px solid transparent;
+			&:hover , &:focus{
+				border: 1px solid #fff;
+			}
+			&.active {
+				border: 1px solid #fff;
+			}
+			a {
+				float: left;
+				height: 22px;
+				line-height: 20px;
+				padding: 0 5px;
+				color: #fff;
+				font-size: 12px;
+				text-decoration: none;
+			}
+		}
+	}
+	.tab-content {
+		margin: 0 auto;
+		padding: 0 50px;
+		color: #fff;
+		.tab-pane {
+			.title {
+			}
+			.pane-body {
+				.multiservices {
+					float: left;
+					dl {
+						dt {
+							float: left;
+							margin-right: 10px;
+							img {
+								width: 30px;
+								height: 30px;
+								overflow: hidden;
+							}
+						}
+						dd {
+							padding-left: 40px;
+						}
+					}
+				}
+				.service-img {
+					float: right;
+				}
+			}
+		}
+	}
+}
+/* 他们都在使用 */
+.who-are-use {
+	padding: 20px 0;
+	color: @gray;
+	width: @percent80;
+	margin: auto;
+	overflow: hidden;
+	ul {
+		li {
+			float: left;
+			margin: 0 40px 20px 0;
+			list-style: none;
+			img {
+				width: 250px;
+			}
+		}
+	}
+}
+.footer-bar {
+    height: 62px;
+    background: @darkblue;
+    .bar-container {
+        width: @percent80;
+		margin: 0 auto;
+        h4 {
+			color: #fff;
+			margin-top: 22px;
+        }
+		a {
+			height: 30px;
+			line-height: 28px;
+			margin-top: 16px;
+			padding: 0 10px;
+			border-radius: 3px;
+			text-decoration: none;
+			color: #fff;
+			border: 1px solid #fff;
+			background: transparent;
+			&:hover {
+				color: @darkblue;
+				background: #fff;
+			}
+		}
+    }
 }

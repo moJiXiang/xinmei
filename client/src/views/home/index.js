@@ -1,31 +1,26 @@
 require('./style.less')
+import config from '../../config'
 
 export default {
     template: require('./template.html'),
-    replace: true,
-    data: function() {
+    data: function(){
         return {
-            user: {
-                email: 'null'
-            }
+            enterprise: ''
         }
     },
     components: {
 
     },
-    route: {
-        activate() {
-            return new Promise((resolve) => {
-                // this.user.email = localStorage.getItem('email')
-                resolve()
-            })
-        },
-        data({to, next}) {
-            next({
-                user: {
-                    email: localStorage.getItem('email')
-                }
-            })
+    methods: {
+        queryEntsByName: function(e){
+
+            // 防止form提交出去，触发form的提交操作
+            e.preventDefault()
+            this.$http.get(`${config.api_url}/enterprises?name=${this.enterprise}`, function(data, status, request){
+                if(data)
+                    this.show = true
+                    this.$set('enterprises', data.data)
+            }).error()
         }
     }
 }

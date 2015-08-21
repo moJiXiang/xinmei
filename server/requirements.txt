@@ -16,6 +16,7 @@ Jinja2==2.8
 kombu==3.0.26
 MarkupSafe==0.23
 mongoengine==0.10.0
+passlib==1.6.5
 pymongo==3.0.3
 pytz==2015.4
 six==1.9.0

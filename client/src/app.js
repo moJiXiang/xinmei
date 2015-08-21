@@ -1,20 +1,31 @@
 require('./app.less')
+require('./less/ui.less')
+require('./less/animate.less')
+
 export default {
     template: require('./app.html'),
     data: function() {
         return {
-
+            showLogin: false,
+            email: null,
+            messages: []
         }
     },
     components: {
-        'app-header': function(resolve) {
-            require(['./components/header'], resolve)
+        "overlay": function(resolve) {
+            require(["./components/overlay"], resolve)
         },
-        'app-footer': function(resolve) {
-            require(['./components/footer'], resolve)
+        "login-form": function(resolve) {
+            require(["./components/login-form"], resolve)
         }
     },
     compiled: function(){
-        console.log('test')
+        this.email = localStorage.getItem('email')
+    },
+    methods: {
+        logout: function() {
+            this.email = null
+            localStorage.removeItem('email')
+        }
     }
 }

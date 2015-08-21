@@ -1,0 +1,45 @@
+<div class="login-form" v-class="shake: error">
+   <div class="login-tab clearfix">
+     <a href="javascript:;" v-class="active: loginTab" v-on="click: loginTab=true">Log In</a>
+     <a href="javascript:;" v-class="active: !loginTab" v-on="click: loginTab=false">Sign Up</a>
+   </div>
+
+   <form action="/session" method="post" v-on="submit: login" v-show="loginTab">
+     <div class="form-field">
+       <input type="text" placeholder="邮箱" aria-label="Email" name="email" v-model="user.email" required v-el="username">
+     </div>
+     <div class="form-field">
+       <input type="password" placeholder="密码" aria-label="Password" name="password" v-model="user.password" required>
+     </div>
+     <label class="form-check">
+       <input type="checkbox" name="permanent" v-model="user.permanent">Remember Me
+     </label>
+     <div class="form-submit">
+       <button>登录</button>
+       <a href="/account/find-password">找回密码</a>
+     </div>
+   </form>
+
+   <form method="post" v-on="submit: signup" v-show="!loginTab">
+     <div class="form-field">
+       <input type="email" placeholder="邮箱" aria-label="Email" name="email" v-model="register.email" required>
+     </div>
+     <div class="form-field">
+       <input type="text" placeholder="昵称" aria-label="Email" name="username" v-model="register.username" required>
+     </div>
+     <div class="form-field">
+       <input type="password" placeholder="密码" aria-label="Password" name="password" v-model="register.password" required>
+     </div>
+     <div class="form-submit">
+       <button>Sign Up</button>
+     </div>
+   </form>
+ </div>
+ <div class="login-social" v-if="$site.logins && loginTab">
+   <h3>Login With</h3>
+   <div class="login-buttons">
+     <a class="button login-{{name}}" href="/account/s/{{name}}" v-repeat="name: $site.logins">
+       <i class="qc-icon-{{name}}"></i>{{name}}
+     </a>
+   </div>
+ </div>

@@ -27,9 +27,9 @@ class EnterpriseAPI(Resource):
         # relEnts = Entsrelation.objects(entsource=lcid).to_json()
         # print len(relEnts)
         if enterprise:
-            return Status(200, 'Success', obj).result
+            return Status(200, 'success', obj).result
         else:
-            return Status(404, 'Not Found', None).result
+            return Status(404, 'fail', {'title':'Not Found'}).result
 
     def load_json(self, obj):
         return json.loads(obj.to_json()) if obj is not None else None
@@ -44,9 +44,9 @@ class EnterpriseListAPI(Resource):
             enterprises = Enterprise.objects[:50]
 
         if len(enterprises):
-            return Status(200, 'Success', json.loads(enterprises.to_json())).result
+            return Status(200, 'success', json.loads(enterprises.to_json())).result
         else:
-            return Status(404, 'Not Found', None).result
+            return Status(404, 'fail', {'title': 'Not Found'}).result
 
 class IndustryChartAPI(Resource):
     def __init__(self):
@@ -66,7 +66,7 @@ class IndustryChartAPI(Resource):
                 self.results["nodes"].append(obj)
                 for link in data["children"]:
                     self.results["links"].append(link)
-        return Status(200, 'Success', self.results).result
+        return Status(200, 'success', self.results).result
 
     def getRelEnts(self, lcid):
         # 获得企业的相关企业信息
@@ -122,7 +122,7 @@ class TreeAPI(Resource):
         # cover to json object
         data = json.loads(Enterprise.objects(lcid=lcid).only("lcid","entname","esdate").first().to_json())
         result = self.coverToTree(lcid, arrs, data)
-        return Status(200, 'Success', result).result
+        return Status(200, 'success', result).result
 
     def getRelEnts(self, lcid):
         # 获得企业的详细信息

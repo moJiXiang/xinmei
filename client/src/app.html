@@ -1,3 +1,72 @@
-<app-header></app-header>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" v-link="/">
+        <img src="/img/logo.jpg" alt="">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a v-link="/">首页</a></li>
+        <li><a v-link="/">产品与服务</a></li>
+        <li><a v-link="/">解决方案</a></li>
+        <li><a v-link="/about">关于我们</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+            <!-- <li v-if="!email"><a v-link="/register">注册</a></li> -->
+            <li v-if="!email"><a v-on="click: showLogin=true">登录</a></li>
+            <li v-if="email"><a v-link="/search">搜索</a></li>
+            <!-- <p>{{email}}</p> -->
+            <li class="dropdown" v-if="email">
+              <a v-link="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ email }} <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a v-link="/profile">个人信息</a></li>
+                <li><a v-link="/dashboard">控制台</a></li>
+                <li class="divider"></li>
+                <li><a v-on="click: logout">退出</a></li>
+              </uli
+            </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <router-view class="view" v-transition="test" transition-mode="out-in"></router-view>
-<app-footer></app-footer>
+
+
+<!-- footer -->
+<footer>
+    <div class="sitemap">
+
+        <ul>
+            <li><a href="">解决方案</a></li>
+            <li><a href="">常见问题</a></li>
+            <li><a href="">关于我们</a></li>
+            <li><a href="">招商合作</a></li>
+            <li><a href="">服务协议</a></li>
+            <li><a href="">用户反馈</a></li>
+        </ul>
+    </div>
+    <div class="footer-body">
+        <h2 class="text-center">信美企业大数据分析</h2>
+        <p class="text-center">
+            <span>©2015-2016信美科技版权所有</span><span>|</span><span>北京ICP备15034252号-3</span>
+        </p>
+    </div>
+</footer>
+
+<div id="message" aria-live="assertive">
+   <div class="message message-{{type}}" v-repeat="messages" v-text="text" v-transition="fade"></div>
+</div>
+<overlay v-if="showLogin" v-transition="fade" show="{{@ showLogin }}">
+    <login-form></login-form>
+</overlay>

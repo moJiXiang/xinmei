@@ -9,13 +9,11 @@ Vue.use(VueRouter)
 
 const App = Vue.extend(require('./src/app.js'))
 
-const router = new VueRouter({
-    history: true,
-    saveScrollPosition: true
-})
+const router = new VueRouter({})
 
 configRouter(router)
 
 router.start(App, '#app')
-
+router.app.message = require('./utils').messageFactory(router.app)
+console.log(router);
 window.router = router

@@ -3,11 +3,8 @@ export function configRouter (router) {
         '/' : {
             component: require('./src/views/home')
         },
-        '/login': {
-            component: require('./src/views/login')
-        },
-        '/regist': {
-            component: require('./src/views/regist')
+        '/search' : {
+            component: require('./src/views/search')
         }
     })
 
