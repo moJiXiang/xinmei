@@ -8,4 +8,5 @@ application.cfg
 run.py
 *.log
 client/index.html
+client/config.js
 client/webpack.config.js

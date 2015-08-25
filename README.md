@@ -76,3 +76,18 @@ brew install rabbitmq(mac)
 
 sudo rabbitmq-server
 ```
+### 更新站点
+
+```
+cd xinmei/client
+cp index.html.template index.html
+bower install
+npm install
+npm run dev
+
+cd xinmei/server
+cp application.cfg.template application.cfg
+cp run.py.template run.py
+gunicorn run.pid ....
+
+```

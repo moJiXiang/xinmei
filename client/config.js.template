@@ -1,0 +1,7 @@
+export function configFactory(app) {
+    return app.config = config
+}
+var config = exports.config = {
+    'api_url': 'http://117.121.25.124:81/api/v1',
+    'api_uri': '/api/v1'
+}

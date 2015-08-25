@@ -2,8 +2,7 @@ require('./app.less')
 require('./less/ui.less')
 require('./less/animate.less')
 require('./less/common.less')
-import config from './config'
-
+import {config} from '../config'
 export default {
     template: require('./app.html'),
     data: function() {
@@ -25,6 +24,7 @@ export default {
     // TODO: how to add headers before each request
     compiled: function(){
         this.email = localStorage.getItem('email')
+        console.log(this);
         this.$http.get(`${config["api_url"]}/checkactive`, function(data) {
             console.log(data);
         }, {

@@ -1,6 +1,5 @@
 require('./style.less')
 require('./industrychart.less')
-import config from '../../config'
 import {draw} from './industry.js'
 
 export default {
@@ -20,7 +19,7 @@ export default {
     methods: {
         update: function() {
             let self = this
-            self.$http.get(`${config.api_url}/industrychart/${self.lcid}`, function(data, status, request) {
+            self.$http.get(`${this.$root.config.api_url}/industrychart/${self.lcid}`, function(data, status, request) {
                 self.industry = data.data
             }, {
                 headers: {

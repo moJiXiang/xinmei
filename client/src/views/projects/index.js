@@ -1,5 +1,4 @@
 require('./style.less')
-import config from '../../config'
 
 export default {
     template: require('./template.html'),
@@ -20,7 +19,7 @@ export default {
     },
     methods: {
         getEntsList: function() {
-            this.$http.get(`${config.api_url}/enterprises`, function(data, status, request) {
+            this.$http.get(`${this.$root.config.api_url}/enterprises`, function(data, status, request) {
                 this.$set('enterprises', data.data)
             }, {
                 headers: {
@@ -31,7 +30,7 @@ export default {
             })
         },
         tabEnterprise: function(lcid) {
-            this.$http.get(`${config.api_url}/enterprises/${lcid}`, function(data, status, request) {
+            this.$http.get(`${this.$root.config.api_url}/enterprises/${lcid}`, function(data, status, request) {
                 this.$set('example', data.data)
             }, {
                 headers: {
@@ -42,13 +41,13 @@ export default {
             })
         },
         startProject: function(entname) {
-            this.$http.get(`${config.api_url}/grabentlist?entname=${entname}`, function(data, status, request) {
+            this.$http.get(`${this.$root.config.api_url}/grabentlist?entname=${entname}`, function(data, status, request) {
 
             })
         },
         queryEntsByName: function(e) {
             e.preventDefault()
-            this.$http.get(`${config.api_url}/enterprises?name=${this.enterprisename}`, function(data, status, request) {
+            this.$http.get(`${this.$root.config.api_url}/enterprises?name=${this.enterprisename}`, function(data, status, request) {
                 this.$set('enterprises', data.data)
             }, {
                 headers: {
@@ -61,7 +60,7 @@ export default {
         queryEntsFromQy: function(e) {
             e.preventDefault()
             let self = this
-            self.$http.get(`${config.api_url}/searchqy?entname=${self.entname}`, function(data, status, request) {
+            self.$http.get(`${this.$root.config.api_url}/searchqy?entname=${self.entname}`, function(data, status, request) {
                 console.log(data);
                 var results = data.data
                 for (var ent of results) {
@@ -81,7 +80,7 @@ export default {
         grabqy: function(ent) {
             let lcid = ent.lcid
             let self = this
-            self.$http.get(`${config.api_url}/grab/${lcid}`, function(data, status, request) {
+            self.$http.get(`${this.$root.config.api_url}/grab/${lcid}`, function(data, status, request) {
                 ent.downloading = true
             }, {
                 headers: {
@@ -99,7 +98,7 @@ export default {
             this.downloadlist.push(obj)
         },
         sendTasks: function() {
-            this.$http.post(`${config.api_url}/grab`, {downloadlist: this.downloadlist}, function(data, status, request) {
+            this.$http.post(`${this.$root.config.api_url}/grab`, {downloadlist: this.downloadlist}, function(data, status, request) {
 
             }, {
                 headers: {

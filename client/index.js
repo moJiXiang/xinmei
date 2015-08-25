@@ -16,4 +16,5 @@ configRouter(router)
 router.start(App, '#app')
 console.log(router);
 router.app.message = require('./utils').messageFactory(router.app)
+router.app.config = require('./config').configFactory(router.app)
 window.router = router
