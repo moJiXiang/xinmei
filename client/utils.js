@@ -11,7 +11,6 @@ export function messageFactory(app) {
   };
 
   var show = function(type, text) {
-      console.log('==============');
     var msg = {type: type, text: text};
     if (!unique(msg, app.messages)) return;
     app.messages.push(msg);

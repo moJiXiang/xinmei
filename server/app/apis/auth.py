@@ -69,17 +69,17 @@ class SendEmailAPI(Resource):
         msg = Message('主题', sender=app.config['MAIL_USERNAME'], recipients=[email])
         msg.body = '文本  body'
         msg.html = '验证码是：%s' % captcha
-        try:
-            mail.send(msg)
-        except Exception as e:
-            # TODO: how to format e detail message to string
-            return make_error(400, 'Mailbox not found or access denied')
+        if User.objects(email = email).first() is not None:
+            return make_error(400, 'exiting user!')
         else:
-            if User.objects(email = email).first() is not None:
-                return make_error(400, 'exiting user!')
+            user = User(email=email, captcha=captcha)
+            user.save()
+            try:
+                mail.send(msg)
+            except Exception as e:
+                # TODO: how to format e detail message to string
+                return make_error(400, 'Mailbox not found or access denied')
             else:
-                user = User(email=email, captcha=captcha)
-                user.save()
                 return Status(200, 'success', 'send captcha to your email').result
 
 
