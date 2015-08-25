@@ -32,7 +32,7 @@ export default {
         login: function(e) {
             e.preventDefault()
             let self = this
-            self.$http.post(`${config["api_url"]}/login`, self.user, function(data, status, request){
+            self.$http.post(`${self.$root.config["api_url"]}/login`, self.user, function(data, status, request){
                 self.$root.showLogin = false
                 self.$root.email = self.user["email"]
                 localStorage.setItem('email', self.user["email"])
@@ -46,7 +46,7 @@ export default {
         getCaptcha: function(e) {
             e.preventDefault()
             let self = this
-            self.$http.post(`${config["api_url"]}/sendemail`,self.register, function(data, status, request) {
+            self.$http.post(`${self.$root.config["api_url"]}/sendemail`,self.register, function(data, status, request) {
                 self.hasCaptcha = true
             }).error(function(data, status, request) {
                 self.shakeError()
@@ -56,7 +56,7 @@ export default {
         signup: function(e) {
             e.preventDefault()
             let self = this
-            self.$http.post(`${config["api_url"]}/users`, self.register, function(data, status, request) {
+            self.$http.post(`${self.$root.config["api_url"]}/users`, self.register, function(data, status, request) {
                 self.$root.showLogin = false
                 self.$root.email = self.register["email"]
                 localStorage.setItem('email', self.register["email"])
