@@ -10,6 +10,19 @@ from celery import Celery
 app = Flask(__name__)
 app.config.from_pyfile("../application.cfg")
 
+def make_celery(app):
+    celery = Celery(app.import_name, broker=app.config['CELERY_BROKER_URL'])
+    celery.conf.update(app.config)
+    TaskBase = celery.Task
+    class ContextTask(TaskBase):
+        abstract = True
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return TaskBase.__call__(self, *args, **kwargs)
+    celery.Task = ContextTask
+    return celery
+celery = make_celery(app)
+
 db = MongoEngine(app)
 
 api = Api(app)
@@ -40,4 +53,4 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     return response
 
-from app.apis import enterprise, test, auth
+from app.apis import enterprise, test, auth, grab

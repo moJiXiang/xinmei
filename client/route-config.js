@@ -6,20 +6,29 @@ export function configRouter (router) {
         '/search' : {
             component: require('./src/views/search')
         },
-        '/enterprises/:lcid': {
-            component: require('./src/views/enterprise')
+        '/tree/:lcid': {
+            component: require('./src/views/tree')
+        },
+        '/industrychart/:lcid': {
+            component: require('./src/views/industry')
         },
         '/dashboard': {
             component: require('./src/views/dashboard'),
             subRoutes: {
-                '/projects': require('./src/views/projects')
+                '/overview': {component: require('./src/views/overview')},
+                '/projects': {component: require('./src/views/projects')},
+                '/future': {component: require('./src/views/future')}
             }
         }
     })
 
-    // router.beforeEach((transition) => {
-    //
-    //     router.app.email = localStorage.getItem('email')
-    //     transition.next()
-    // })
+    router.beforeEach((transition) => {
+        console.log(transition);
+        if (transition.to.path === '/forbidden')     {
+            router.app.showLogin = true
+            router.go('/')
+        }else {
+            transition.next()
+        }
+    })
 }

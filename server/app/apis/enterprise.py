@@ -57,6 +57,7 @@ class IndustryChartAPI(Resource):
         self.deep = 1
         self.results = {}
     # @cache.cached(timeout=60)
+    @authorized
     def get(self, lcid):
         self.getRelEnts(lcid)
         self.addDeep(lcid, self.rawdata, None)

@@ -1,57 +1,3 @@
-require('./style.less')
-require('./tree.less')
-import config from '../../config'
-
-export default {
-    template: require('./template.html'),
-    data: function() {
-        return {
-            lcid: null,
-            enterprise: null,
-            tree: null
-        }
-    },
-    ready: function() {
-        this.$watch('tree', function(value, mutation) {
-            draw(value)
-        })
-    },
-    compiled: function() {
-        this.$root.isDashboard = false
-    },
-    methods: {
-        update: function() {
-            let self = this
-            self.$http.get(`${config.api_url}/enterprises/${self.lcid}`, function(data, status, request) {
-                self.enterprise = data.data["enterprise"]
-            },{
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
-            }).error(function(data){
-                self.$root.message.show('error', data["message"]);
-            })
-
-            self.$http.get(`${config.api_url}/tree/${self.lcid}`, function(data, status, request) {
-                self.tree = data.data
-            }, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
-            }).error(function(data) {
-                self.$root.message.show('error', data["message"]);
-            })
-        }
-    },
-    route: {
-        data ({to: {params: {lcid}}}) {
-            console.log(lcid);
-            this.lcid = lcid
-            this.update()
-        }
-    }
-}
-
 var m = [20, 120, 20, 120]
   , w = 1800 - m[1] - m[3]
   , h = 600 - m[0] -m[2]
@@ -64,7 +10,7 @@ var diagonal = d3.svg.diagonal()
 
 var vis = null
 
-var draw = function(value) {
+export function draw(value) {
     vis = d3.select('#enterprisetree').append("svg:svg")
         .attr("width", w + m[1] + m[3])
         .attr("height", h + m[0] + m[2])

@@ -1,6 +1,7 @@
 require('./app.less')
 require('./less/ui.less')
 require('./less/animate.less')
+require('./less/common.less')
 import config from './config'
 
 export default {
@@ -33,6 +34,7 @@ export default {
             this.email = null
             localStorage.removeItem('email')
             localStorage.removeItem('token')
+            window.router.go('/forbidden')
         })
     },
     methods: {

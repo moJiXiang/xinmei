@@ -1,0 +1,117 @@
+.chart-header {
+  position: relative;
+}
+.togglechart-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+#regmsg {
+  width: 400px;
+}
+.affix {
+  top: 0;
+}
+.gsmsg {
+  background: rgba(0, 0, 0, 0.5);
+  list-style: none;
+  h4 {
+    color: #999;
+  }
+  dl {
+    overflow: hidden;
+    margin-bottom: 5px;
+    .title {
+      color: #bbb;
+      float: left;
+      font-weight: normal;
+      font-size: 12px;
+      min-width: 48px;
+      margin-right: 10px;
+    }
+    .info {
+      width: 300px;
+      float: left;
+      color: #999;
+      font-style: normal;
+      font-size: 12px;
+    }
+  }
+}
+svg {
+  font-size: 14px;
+}
+svg.outter {
+	stroke: #ddd;
+	stroke-width: 1px;
+}
+rect.colrect {
+	stroke-width: 1px;
+	stroke: #ddd;
+}
+.colrectline ,.rowrectline{
+	stroke-width: 1px;
+	stroke: #000;
+}
+.rowrectline {
+	stroke-dasharray: 3, 3;
+}
+.rowrect {
+	fill: #fff;
+}
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  stroke-width: .5px;
+}
+.yaxis {
+	fill: #000;
+}
+.yaxis path,
+.yaxis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.yaxis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+.industrynode {
+  cursor: pointer;
+  fill: #fff;
+  stroke: #ddd;
+  stroke-width: 2;
+  // opacity: 0.5
+}
+.investmentnode {
+  fill: yellow;
+  stroke: #ddd;
+  stroke-width: 2;
+}
+.industrytitle {
+  font-size: 10px;
+  text-transform: rotate(-10, 0 0)
+}
+.entnametext {
+  font-size: 10px;
+}
+
+path.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1px;
+}
+.investmentname {
+  font-size: 10px;
+}
+.entregcap {
+  font-size: 10px;
+  color: rgb(36, 33, 34);
+  cursor: pointer;
+}

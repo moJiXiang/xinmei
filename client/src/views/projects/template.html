@@ -1,0 +1,363 @@
+<section class="common-wrapper">
+    <div class="common-header">
+        <h1>项目</h1>
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="">
+                    <a data-toggle="tab" href="#tab-example" aria-expanded="true"><i class="fa fa-eye"></i>
+                示例
+                </a></li>
+                <li class="active">
+                    <a data-toggle="tab" href="#tab-overview" aria-expanded="true"><i class="fa fa-eye"></i>
+                检索
+                </a></li>
+                <li class="">
+                    <a data-toggle="tab" href="#keywords" aria-expanded="false"><i class="fa fa-play"></i>
+                关键词
+                </a></li>
+                <li class="">
+                    <a data-toggle="tab" href="#tab-usage" aria-expanded="false"><i class="fa fa-cc"></i>
+                词团
+                </a></li>
+                <li class="">
+                    <a data-toggle="tab" href="#tab-usage" aria-expanded="false"><i class="fa fa-history"></i>
+                正在下载
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="common-content">
+        <div class="content-wapper">
+            <div class="tab-content">
+                <div class="tab-pane fade" id="tab-example">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <section>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-4 col-lg-3">
+                                                <div id="facets">
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <h4>示例</h4>
+                                                            <ol class="list-unstyled">
+                                                                <li><a v-on="click:tabEnterprise('4106B7781E544C9E9FA08DEFCD55C270110000')">中新恒超实业有限公司</a></li>
+                                                                <li><a v-on="click:tabEnterprise('12019300122006021500010120000')">天津海量信息技术有限公司</a></li>
+                                                                <li><a v-on="click:tabEnterprise('440301001012006060501478440000')">招商银行股份有限公司</a></li>
+                                                            </ol>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-9">
+                                                <!-- 示例 -->
+                                                <div id="example">
+                                                    <div class="example-cell" v-show="example">
+                                                        <dl class="dl-horizontal" >
+                                                            <dt>公司名：</dt>
+                                                            <dd>{{example.enterprise.entname}}</dd>
+                                                            <dt>注册时间：</dt>
+                                                            <dd>{{example.enterprise.esdate}}</dd>
+                                                            <dt>地址：</dt>
+                                                            <dd>{{example.enterprise.address}}<dd>
+                                                            <dt>注册资金：</dt>
+                                                            <dd>{{example.enterprise.regcap}}万{{example.enterprise.regcapcur}}</dd>
+                                                        </dl>
+                                                        <div class="explorer-cell-actions">
+                                                            <a href="#/projects/tree/{{example.enterprise.lcid}}" class="btn btn-default">
+                                                                <i class="fa fa-tree" data-hit="0" data-toggle="tooltip" data-original-title="" title=""></i>
+                                                            </a>
+                                                            <a href="#/projects/industrychart/{{example.enterprise.lcid}}" class="btn btn-default">
+                                                                <i class="fa fa-bar-chart" data-hit="0" data-toggle="tooltip" data-original-title="" title=""></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="tabbable">
+                                                            <ul class="nav nav-tabs">
+                                                                <li class="active">
+                                                                    <a data-toggle="tab" href="#tab-partner" aria-expanded="true"><i class="fa fa-eye"></i>
+                                                                股东
+                                                                </a></li>
+                                                                <li class="">
+                                                                    <a data-toggle="tab" href="#tab-mostly" aria-expanded="false"><i class="fa fa-play"></i>
+                                                                主要人员
+                                                                </a></li>
+                                                                <li class="">
+                                                                    <a data-toggle="tab" href="#tab-relents" aria-expanded="false"><i class="fa fa-cc"></i>
+                                                                关联企业
+                                                                </a></li>
+                                                                <li class="">
+                                                                    <a data-toggle="tab" href="#tab-patent" aria-expanded="false"><i class="fa fa-history"></i>
+                                                                专利
+                                                                </a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="example-cell">
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane active in" id="tab-partner">
+                                                                <ul class="list-unstyled" v-repeat="entpre: example.entprerelations">
+                                                                    <li>{{entpre.entpre}}</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="tab-pane in" id="tab-mostly">
+                                                                <ul class="list-unstyled" v-repeat="entpre: example.entprerelations">
+                                                                    <li>{{entpre.entpre}}</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="tab-pane in" id="tab-relents">
+                                                                <ul class="list-unstyled" v-repeat="entsrel: example.entsrelations">
+                                                                    <li>{{entsrel.entname}}</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="tab-pane  in" id="tab-patent">
+                                                                <ul class="list-unstyled" v-repeat="patent: example.entpatents">
+                                                                    <li>{{patent.mc}}</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-3">
+                            <section>
+                                <div class="panel panel-default">
+                                    1
+                                    <br>
+                                    2
+                                    <br>
+
+                                    4
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade active in" id="tab-overview">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <section>
+                                <div class="panel panel-default pannel-search">
+                                    <div class="panel-body">
+
+                                        <form v-on="submit:queryEntsByName" class="simple_form new_explorer" id="new_explorer" accept-charset="UTF-8">
+                                            <div class="col-xs-8 col-md-6 col-sm-offset-1 col-md-offset-3">
+                                                <div class="input-group" id="index-explorer-search">
+                                                    <span class="input-group-addon">
+                                                    <i class="fa fa-search"></i>
+                                                    </span>
+                                                    <input class="string required form-control" placeholder="搜索..." type="text" id="explorer_q" v-model="enterprisename">
+                                                    <span class="explorer-search-clear hide">
+                                                        <i class="fa fa-search"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </section>
+                            <div id="results-loading" v-show="show">
+                                <i class="fa fa-spinner fa-pulse"></i>
+                            </div>
+                            <section id='results-preview'>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-4 col-lg-3">
+                                                <div id="facets">
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <h4>地区</h4>
+                                                            <ol class="list-unstyled">
+                                                                <li>北京</li>
+                                                                <li>北京</li>
+                                                                <li>北京</li>
+                                                                <li>北京</li>
+                                                            </ol>
+                                                        </li>
+                                                        <li>
+                                                            <h4>注册资金(单位:万)</h4>
+                                                            <ol class="list-unstyled">
+                                                                <li>
+                                                                    <a href="#/lessthan100">0-100</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#/lessthan100">100-1000</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#/lessthan100">1000-10000</a>
+                                                                </li>
+                                                            </ol>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-9">
+                                                <!-- 搜索结果 -->
+                                                <div id="hits">
+                                                    <div class="explorer-hit" v-repeat="ent: enterprises">
+                                                        <dl class="dl-horizontal">
+                                                            <dt>公司名：</dt>
+                                                            <dd>{{ent.entname}}</dd>
+                                                            <dt>注册时间：</dt>
+                                                            <dd>{{ent.esdate}}</dd>
+                                                            <dt>地址：</dt>
+                                                            <dd>{{ent.address}}<dd>
+                                                            <dt>注册资金：</dt>
+                                                            <dd>{{ent.regcap}}万{{ent.regcapcur}}</dd>
+                                                        </dl>
+                                                        <div class="explorer-hit-actions">
+                                                            <a v-link="/tree/{{ent.lcid}}" class="btn btn-default">
+                                                                <i class="fa fa-tree" data-hit="0" data-toggle="tooltip" data-original-title="" title=""></i>
+                                                            </a>
+                                                            <a v-link="/industrychart/{{ent.lcid}}" class="btn btn-default">
+                                                                <i class="fa fa-bar-chart" data-hit="0" data-toggle="tooltip" data-original-title="" title=""></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-3">
+                            <section id="addbtnsfield">
+                                <div class="panel panel-default master-action">
+                                    <div class="panel-heading">
+                                        <h3>增加新的项目</h3>
+                                    </div>
+                                    <div class="panel-body manage-index-actions-container">
+                                        <p id="explorer-add-records-button">
+                                            <a data-toggle="modal" class="btn btn-default btn-block" data-target="#modal-loadone"><i class="fa fa-plus"></i>
+                                            增加单个公司
+                                            </a>
+                                        </p>
+                                        <p id="explorer-upload-button">
+                                            <a data-toggle="modal" class="btn btn-default btn-block" href="#modal-loadmore"><i class="fa fa-upload"></i>
+                                                批量增加公司（限admin）
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="keywords">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <section>
+                                <div class="panel panel-default">
+                                    1
+                                    <br>
+                                    2
+                                    <br>
+
+                                    4
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-6">
+                            <section>
+                                <div class="panel panel-default">
+                                    1
+                                    <br>
+                                    2
+                                    <br>
+
+                                    4
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal-loadone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">新的项目</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" v-on="submit:queryEntsFromQy">
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">公司名</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model="entname">
+                    </div>
+                </div>
+            </form>
+            <ul class="list-group">
+              <li class="list-group-item clearfix" v-repeat="result: qySearchResults" v-class="downloading: result.downloading">
+                  <a v-on="click:grabqy(result)"  class="btn btn-default pull-right download-icon">
+                      <i class="fa fa-download"></i>
+                  </a>
+                  <a class="btn btn-default pull-right downloading-icon">
+                      <i class="fa fa-spinner"></i>
+                  </a>
+                {{result.fei_entname}}
+              </li>
+            </ul>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" v-on="click: startProject(entname)">开始项目</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-loadmore" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">新的项目</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" v-on="submit:queryEntsFromQy">
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">公司名</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model="entname">
+                    </div>
+                </div>
+            </form>
+            <ul class="list-group">
+                <li class="list-group-item clearfix" v-repeat="ent: $data.downloadlist">
+                    {{ent.entname}}
+                </li>
+            </ul>
+            <ul class="list-group">
+              <li class="list-group-item clearfix"  v-repeat="result: qySearchResults" v-class="downloading: result.downloading">
+                  <a v-on="click:addToDownloadList(result.fei_entname, result.lcid)"  class="btn btn-default pull-right download-icon">
+                      <i class="fa fa-plus"></i>
+                  </a>
+                  <a class="btn btn-default pull-right downloading-icon">
+                      <i class="fa fa-spinner"></i>
+                  </a>
+                {{result.fei_entname}}
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" v-on="click: sendTasks">开始</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
