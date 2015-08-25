@@ -5,6 +5,7 @@ lib
 node_modules
 .DS_Store
 application.cfg
+run.py
 *.log
 client/index.html
 client/webpack.config.js

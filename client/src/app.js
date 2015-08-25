@@ -22,6 +22,7 @@ export default {
             require(["./components/login-form"], resolve)
         }
     },
+    // TODO: how to add headers before each request
     compiled: function(){
         this.email = localStorage.getItem('email')
         this.$http.get(`${config["api_url"]}/checkactive`, function(data) {
@@ -34,6 +35,7 @@ export default {
             this.email = null
             localStorage.removeItem('email')
             localStorage.removeItem('token')
+            // TODO: it's not recommend to use window
             window.router.go('/forbidden')
         })
     },
