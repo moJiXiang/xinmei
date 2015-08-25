@@ -5,6 +5,7 @@
     <title>信美大数据</title>
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="build/style.css">
 </head>
 <body>
@@ -13,5 +14,6 @@
 <!-- <script src="http://localhost:8081/webpack-dev-server.js"></script> -->
 <script src="lib/jquery/dist/jquery.min.js"></script>
 <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="lib/d3/d3.min.js"></script>
 <script src="build/build.js"></script>
 </html>
