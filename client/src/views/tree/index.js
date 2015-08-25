@@ -1,6 +1,5 @@
 require('./style.less')
 require('./tree.less')
-import config from '../../config'
 import {draw} from './tree.js'
 
 export default {

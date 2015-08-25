@@ -1,6 +1,5 @@
 require('./style.less')
 // config = require('../../config')
-import config from '../../config'
 export default {
     template: require('./template.html'),
     data: function() {
