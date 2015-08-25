@@ -11,6 +11,9 @@ export default {
     components: {
 
     },
+    compiled: function() {
+        this.$root.isDashboard = false
+    },
     methods: {
         queryEntsByName: function(e){
 

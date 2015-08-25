@@ -27,7 +27,7 @@
             <li v-if="email"><a v-link="/search">搜索</a></li>
             <!-- <p>{{email}}</p> -->
             <li class="dropdown" v-if="email">
-              <a v-link="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ email }} <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ email }} <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a v-link="/profile">个人信息</a></li>
                 <li><a v-link="/dashboard">控制台</a></li>
@@ -44,7 +44,7 @@
 
 
 <!-- footer -->
-<footer>
+<footer v-if="!isDashboard">
     <div class="sitemap">
 
         <ul>

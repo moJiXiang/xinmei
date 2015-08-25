@@ -1,6 +1,7 @@
 require('./app.less')
 require('./less/ui.less')
 require('./less/animate.less')
+import config from './config'
 
 export default {
     template: require('./app.html'),
@@ -8,7 +9,8 @@ export default {
         return {
             showLogin: false,
             email: null,
-            messages: []
+            messages: [],
+            isDashboard: false
         }
     },
     components: {
@@ -21,11 +23,23 @@ export default {
     },
     compiled: function(){
         this.email = localStorage.getItem('email')
+        this.$http.get(`${config["api_url"]}/checkactive`, function(data) {
+            console.log(data);
+        }, {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }).error(function(data){
+            this.email = null
+            localStorage.removeItem('email')
+            localStorage.removeItem('token')
+        })
     },
     methods: {
         logout: function() {
             this.email = null
             localStorage.removeItem('email')
+            localStorage.removeItem('token')
         }
     }
 }

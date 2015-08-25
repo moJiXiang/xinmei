@@ -16,7 +16,8 @@ export default {
                 email: null,
                 username: null,
                 password: null
-            }
+            },
+            hasCaptcha: false
         }
     },
     compiled: function(){
@@ -33,28 +34,37 @@ export default {
             e.preventDefault()
             let self = this
             self.$http.post(`${config["api_url"]}/login`, self.user, function(data, status, request){
-                console.log(data);
-                console.log(status)
-
                 self.$root.showLogin = false
                 self.$root.email = self.user["email"]
                 localStorage.setItem('email', self.user["email"])
                 localStorage.setItem('token', data.data["token"])
 
             }).error(function(data, status, request) {
-                console.log(data)
                 self.shakeError()
-                console.log(self.$root.messages);
-                console.log(data["message"]);
                 self.$root.message.show('error', data["message"]);
-                console.log(self.$root);
+            })
+        },
+        getCaptcha: function(e) {
+            e.preventDefault()
+            let self = this
+            self.$http.post(`${config["api_url"]}/sendemail`,self.register, function(data, status, request) {
+                self.hasCaptcha = true
+            }).error(function(data, status, request) {
+                self.shakeError()
+                self.$root.message.show('error', data["message"]);
             })
         },
         signup: function(e) {
             e.preventDefault()
             let self = this
             self.$http.post(`${config["api_url"]}/users`, self.register, function(data, status, request) {
-
+                self.$root.showLogin = false
+                self.$root.email = self.register["email"]
+                localStorage.setItem('email', self.register["email"])
+                localStorage.setItem('token', data.data["token"])
+            }).error(function(data, status, request) {
+                self.shakeError()
+                self.$root.message.show('error', data["message"]);
             })
         }
     },

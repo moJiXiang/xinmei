@@ -4,10 +4,11 @@
      <a href="javascript:;" v-class="active: !loginTab" v-on="click: loginTab=false">Sign Up</a>
    </div>
 
-   <form action="/session" method="post" v-on="submit: login" v-show="loginTab">
+   <form method="post" v-on="submit: login" v-show="loginTab">
      <div class="form-field">
        <input type="text" placeholder="邮箱" aria-label="Email" name="email" v-model="user.email" required v-el="username">
      </div>
+
      <div class="form-field">
        <input type="password" placeholder="密码" aria-label="Password" name="password" v-model="user.password" required>
      </div>
@@ -20,26 +21,30 @@
      </div>
    </form>
 
-   <form method="post" v-on="submit: signup" v-show="!loginTab">
+   <form method="post" v-show="!loginTab">
      <div class="form-field">
        <input type="email" placeholder="邮箱" aria-label="Email" name="email" v-model="register.email" required>
      </div>
      <div class="form-field">
+       <input type="text" placeholder="邮箱验证码" aria-label="Email" name="email" v-model="register.captcha">
+       <button v-on="click: getCaptcha" v-if="!hasCaptcha">获取邮箱验证吗</button>
+     </div>
+     <div class="form-field" v-if="hasCaptcha">
        <input type="text" placeholder="昵称" aria-label="Email" name="username" v-model="register.username" required>
      </div>
-     <div class="form-field">
+     <div class="form-field" v-if="hasCaptcha">
        <input type="password" placeholder="密码" aria-label="Password" name="password" v-model="register.password" required>
      </div>
      <div class="form-submit">
-       <button>Sign Up</button>
+       <button  v-if="hasCaptcha" v-on="click: signup">注册</button>
      </div>
    </form>
  </div>
- <div class="login-social" v-if="$site.logins && loginTab">
+ <!-- <div class="login-social" v-if="$site.logins && loginTab">
    <h3>Login With</h3>
    <div class="login-buttons">
      <a class="button login-{{name}}" href="/account/s/{{name}}" v-repeat="name: $site.logins">
        <i class="qc-icon-{{name}}"></i>{{name}}
      </a>
    </div>
- </div>
+ </div> -->

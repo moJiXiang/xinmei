@@ -2,7 +2,7 @@
 from flask import request, jsonify
 from flask_restful import reqparse, Resource
 import urllib, urllib2, json, time
-from app import app, db, cache, api
+from app import app, db, cache, api, auth
 
 # Import module models
 from app.models.enterprise import Enterprise
@@ -11,8 +11,10 @@ from app.models.entprerelation import Entprerelation
 from app.models.entpatent import Entpatent
 
 from app.status import Status
+from app.helper import authorized
 
 class EnterpriseAPI(Resource):
+    @authorized
     @cache.cached(timeout=60)
     def get(self, lcid):
         enterprise = Enterprise.objects(lcid=lcid).first()
@@ -35,6 +37,7 @@ class EnterpriseAPI(Resource):
         return json.loads(obj.to_json()) if obj is not None else None
 
 class EnterpriseListAPI(Resource):
+    @authorized
     def get(self):
         name = request.args.get('name')
         # 从本地数据库中得到数据
@@ -111,6 +114,7 @@ class IndustryChartAPI(Resource):
 
 class TreeAPI(Resource):
     @cache.cached(timeout=60)
+    @authorized
     def get(self, lcid):
         # 得到当前公司的关联企业
         arrs = []

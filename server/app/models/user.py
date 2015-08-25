@@ -2,8 +2,7 @@
 from app import app, db
 from mongoengine import *
 from passlib.apps import custom_app_context as pwd_context
-from itsdangerous import (TimedJSONWebSignatureSerializer
-                          as Serializer, BadSignature, SignatureExpired)
+from itsdangerous import TimedJSONWebSignatureSerializer, BadSignature, SignatureExpired
 
 class User(Document):
     '''
@@ -14,8 +13,9 @@ class User(Document):
         'collection': 'users'
     }
     email = EmailField()
-    username = StringField()
-    password_hash = StringField()
+    captcha = StringField()
+    username = StringField(default='')
+    password_hash = StringField(default='')
     is_active = BooleanField(default=False)
     is_admin = BooleanField(default=False)
 
@@ -26,18 +26,18 @@ class User(Document):
         return pwd_context.verify(password, self.password_hash)
 
     def generate_auth_token(self, expiration=600):
-        s = Serializer(app.config["SECRET_KEY"], expires_in=expiration)
+        s = TimedJSONWebSignatureSerializer(app.config["SECRET_KEY"], expires_in=expiration)
+        print s.dumps({"email": self.email})
         return s.dumps({"email": self.email})
 
     @staticmethod
     def verify_auth_token(token):
-        s = Serializer(app.config["SECRET_KEY"])
+        s = TimedJSONWebSignatureSerializer(app.config["SECRET_KEY"])
         try:
             data = s.loads(token)
+            user = User.objects(email = data["email"]).first()
+            return user
         except SignatureExpired:
             return None # valid token, but expired
         except BadSignature:
             return None
-
-        user = User.query.get(data["id"])
-        return user

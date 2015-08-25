@@ -26,6 +26,11 @@ npm install
 
 bower install
 
+sudo npm install webpack -g
+
+# build web resource package with webpack
+npm run dev
+
 cd ../server
 
 cp application.cfg.template application.cfg
@@ -47,7 +52,8 @@ server {
 
         listen 81;
         location / {
-                proxy_pass http://127.0.0.1:5000;
+                root /home/safeuser/data/www/xinmei/client;
+                index index.html;
         }
         location /api/v1 {
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -56,6 +62,8 @@ server {
                 proxy_pass http://127.0.0.1:8000;
         }
 }
+# run nginx
+sudo service nginx start
 
 # deploy celery with development environment
 cd server

@@ -14,6 +14,6 @@ const router = new VueRouter({})
 configRouter(router)
 
 router.start(App, '#app')
-router.app.message = require('./utils').messageFactory(router.app)
 console.log(router);
+router.app.message = require('./utils').messageFactory(router.app)
 window.router = router

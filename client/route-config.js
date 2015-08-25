@@ -5,6 +5,15 @@ export function configRouter (router) {
         },
         '/search' : {
             component: require('./src/views/search')
+        },
+        '/enterprises/:lcid': {
+            component: require('./src/views/enterprise')
+        },
+        '/dashboard': {
+            component: require('./src/views/dashboard'),
+            subRoutes: {
+                '/projects': require('./src/views/projects')
+            }
         }
     })
 
