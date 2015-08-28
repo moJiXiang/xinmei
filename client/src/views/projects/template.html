@@ -16,7 +16,7 @@
                 关键词
                 </a></li>
                 <li class="">
-                    <a data-toggle="tab" href="#tab-usage" aria-expanded="false"><i class="fa fa-cc"></i>
+                    <a data-toggle="tab" href="#words" aria-expanded="false"><i class="fa fa-cc"></i>
                 词团
                 </a></li>
                 <li class="">
@@ -256,24 +256,74 @@
                         <div class="col-lg-6">
                             <section>
                                 <div class="panel panel-default">
-                                    1
-                                    <br>
-                                    2
-                                    <br>
-
-                                    4
+                                    <form class="input-group">
+                        				<div class="input-group">
+                        			  		<input type="text" id="main" class="form-control mainimput" placeholder="例如：中新恒超" v-model="searchword.main">
+                                            <!-- <select class="form-control">
+                            					<option value="">空</option>
+                            				</select> -->
+                        				</div>
+                        				<select class="form-control" v-model="searchword.keyword" v-on="change: selectWord">
+                        					<option value="">空</option>
+                                            <option v-repeat="word: exitwords">{{word.keyword}}</option>
+                        				</select>
+                        				<select class="form-control" v-model="searchword.word">
+                        					<option value="">空</option>
+                                            <option v-repeat="w: words">{{w}}</option>
+                        				</select>
+                        			  	<button v-on="click: addSearchWord">增加搜索组合</button>
+                        			</form>
                                 </div>
                             </section>
                         </div>
                         <div class="col-lg-6">
                             <section>
                                 <div class="panel panel-default">
-                                    1
-                                    <br>
-                                    2
-                                    <br>
+                                    <ul class="list-group">
+                                        <li class="list-group-item" v-repeat="sw: searchwords">{{sw.kw}}</li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="words">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <section>
+                                <div class="panel panel-default">
+                                    <form v-on="submit: addKeyWords">
+                                        <input type="text" name="name" placeholder="词团主体" v-model="newwords.keyword">
 
-                                    4
+                                        <button class="btn btn-default">增加词团</button>
+                                    </form>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-4">
+                            <section>
+                                <div class="panel panel-default">
+                                    <ul class="list-group">
+                                        <li class="list-group-item clearfix" v-repeat="word: exitwords" v-on="click: modifyWords(word)">
+                                            {{word.keyword}}
+                                        </li>
+                                        <!-- <p v-repeat="word: exitwords" v-on="click: modifyWords(word)">{{word.keyword}}</p> -->
+                                    </ul>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-4">
+                            <section>
+                                <form action="">
+                                    <input type="text"  v-model="newword">
+                                    <button v-on="click: addWord">增加词</button>
+                                </form>
+                                <div class="panel panel-default">
+                                    <ul class="list-group">
+                                        <li class="list-group-item clearfix" v-repeat="w: currentWord.words">
+                                            {{w}}
+                                        </li>
+                                    </ul>
                                 </div>
                             </section>
                         </div>

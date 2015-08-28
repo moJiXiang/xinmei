@@ -2,7 +2,10 @@
 from flask import request
 from app.models.user import User
 from app.status import make_error
-import random
+import random, json
+
+def convert2json(obj):
+    return json.loads(obj.to_json()) if obj is not None else None
 
 def generate_verification_code():
     ''' 随机生成6位的验证码 '''

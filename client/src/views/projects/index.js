@@ -8,7 +8,21 @@ export default {
             enterprises: null,
             example: null,
             qySearchResults: null,
-            downloadlist: []
+            downloadlist: [],
+            newwords : {
+                keyword: null,
+                words: []
+            },
+            currentWord: null,
+            exitwords: [],
+            newword: null,
+            searchword: {
+                main: null,
+                keyword: null,
+                word: null
+            },
+            searchwords: [],
+            words: null
         }
     },
     components: {
@@ -16,6 +30,8 @@ export default {
     },
     compiled: function() {
         this.$root.isDashboard = false
+        this.getExitWords()
+        this.getSearchwords()
     },
     methods: {
         getEntsList: function() {
@@ -106,6 +122,55 @@ export default {
                 }
             }).error(function(data, status, request) {
 
+            })
+        },
+        // 增加词团的关键词
+        addKeyWords: function(e) {
+            e.preventDefault()
+            this.$http.post(`${this.$root.config.api_url}/words`, this.newwords, function(data) {
+                console.log(data)
+                this.exitwords.push(data.data)
+            })
+        },
+        // 修改词团的主题部分
+        modifyWords: function(word) {
+            this.currentWord = word
+        },
+        addWord: function(e) {
+            e.preventDefault()
+            console.log(this.currentWord);
+            this.currentWord.words.push(this.newword)
+            this.$http.put(`${this.$root.config.api_url}/words/${this.currentWord._id.$oid}`, this.currentWord, function(data) {
+                // this.exitwords = data.data
+            })
+        },
+        // 获取数据库中的词团
+        getExitWords: function(e) {
+            this.$http.get(`${this.$root.config.api_url}/words`, function(data) {
+                this.exitwords = data.data
+            })
+        },
+
+        addSearchWord: function(e) {
+            e.preventDefault()
+            console.log(this.searchword)
+            this.$http.post(`${this.$root.config.api_url}/searchwords`, this.searchword, function(data) {
+                this.searchwords.push(data.data)
+            })
+        },
+
+        selectWord: function() {
+            console.log('---------------');
+            console.log(this.searchword);
+            var keyword = this.searchword.keyword
+            this.$http.get(`${this.$root.config.api_url}/words?keyword=${keyword}`, function(data) {
+                this.words = data.data[0].words
+            })
+        },
+
+        getSearchwords: function() {
+            this.$http.get(`${this.$root.config.api_url}/searchwords`, function(data) {
+                this.searchwords = data.data
             })
         }
     }
