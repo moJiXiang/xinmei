@@ -280,7 +280,7 @@
                             <section>
                                 <div class="panel panel-default">
                                     <ul class="list-group">
-                                        <li class="list-group-item" v-repeat="sw: searchwords">{{sw.kw}}</li>
+                                        <li class="list-group-item" v-repeat="sw: searchwords"><a v-link="/searchdocs/{{sw.kw}}">{{sw.kw}}</a></li>
                                     </ul>
                                 </div>
                             </section>

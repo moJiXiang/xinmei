@@ -5,6 +5,7 @@ import urllib, urllib2, json, time
 from app import app, db, cache, api, auth
 from app.models.words import Word
 from app.models.searchword import Searchword
+from app.models.searchdoc import Searchdoc
 from app.status import Status
 from app.helper import convert2json
 
@@ -48,7 +49,12 @@ class SearchwordAPI(Resource):
         searchword = Searchword(main = main, keyword = keyword, word = word, kw = kw).save()
         return Status(200, 'success', convert2json(searchword)).result
 
+class SearchdocAPI(Resource):
+    def get(self, kw):
+        searchdocs = Searchdoc.objects(kw = kw)
+        return Status(200, 'success', convert2json(searchdocs)).result
 
 api.add_resource(WordsListAPI, '%s/words' % app.config['API_URI'])
 api.add_resource(WordsAPI, '%s/words/<oid>' % app.config['API_URI'])
 api.add_resource(SearchwordAPI, '%s/searchwords' % app.config['API_URI'])
+api.add_resource(SearchdocAPI, '%s/searchdocs/<kw>' % app.config['API_URI'])

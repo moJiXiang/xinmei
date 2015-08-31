@@ -19,6 +19,9 @@ export function configRouter (router) {
                 '/projects': {component: require('./src/views/projects')},
                 '/future': {component: require('./src/views/future')}
             }
+        },
+        '/searchdocs/:kw': {
+            component: require('./src/views/searchdoc')
         }
     })
 
