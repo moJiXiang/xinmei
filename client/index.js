@@ -13,8 +13,10 @@ const router = new VueRouter({})
 
 configRouter(router)
 
-router.start(App, '#app')
 console.log(router);
-router.app.message = require('./utils').messageFactory(router.app)
-router.app.config = require('./config').configFactory(router.app)
+router.start(App, '#app')
+console.log('入口－－－－－－－－－－－－－－－');
+console.log(router.app);
+require('./utils').messageFactory(router.app)
+require('./config').configFactory(router.app)
 window.router = router

@@ -3,10 +3,6 @@
         <h1>项目</h1>
         <div class="tabbable">
             <ul class="nav nav-tabs">
-                <li class="">
-                    <a data-toggle="tab" href="#tab-example" aria-expanded="true"><i class="fa fa-eye"></i>
-                示例
-                </a></li>
                 <li class="active">
                     <a data-toggle="tab" href="#tab-overview" aria-expanded="true"><i class="fa fa-eye"></i>
                 检索
@@ -29,115 +25,6 @@
     <div class="common-content">
         <div class="content-wapper">
             <div class="tab-content">
-                <div class="tab-pane fade" id="tab-example">
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <section>
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-sm-4 col-lg-3">
-                                                <div id="facets">
-                                                    <ul class="list-unstyled">
-                                                        <li>
-                                                            <h4>示例</h4>
-                                                            <ol class="list-unstyled">
-                                                                <li><a v-on="click:tabEnterprise('4106B7781E544C9E9FA08DEFCD55C270110000')">中新恒超实业有限公司</a></li>
-                                                                <li><a v-on="click:tabEnterprise('12019300122006021500010120000')">天津海量信息技术有限公司</a></li>
-                                                                <li><a v-on="click:tabEnterprise('440301001012006060501478440000')">招商银行股份有限公司</a></li>
-                                                            </ol>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-8 col-lg-9">
-                                                <!-- 示例 -->
-                                                <div id="example">
-                                                    <div class="example-cell" v-show="example">
-                                                        <dl class="dl-horizontal" >
-                                                            <dt>公司名：</dt>
-                                                            <dd>{{example.enterprise.entname}}</dd>
-                                                            <dt>注册时间：</dt>
-                                                            <dd>{{example.enterprise.esdate}}</dd>
-                                                            <dt>地址：</dt>
-                                                            <dd>{{example.enterprise.address}}<dd>
-                                                            <dt>注册资金：</dt>
-                                                            <dd>{{example.enterprise.regcap}}万{{example.enterprise.regcapcur}}</dd>
-                                                        </dl>
-                                                        <div class="explorer-cell-actions">
-                                                            <a href="#/projects/tree/{{example.enterprise.lcid}}" class="btn btn-default">
-                                                                <i class="fa fa-tree" data-hit="0" data-toggle="tooltip" data-original-title="" title=""></i>
-                                                            </a>
-                                                            <a href="#/projects/industrychart/{{example.enterprise.lcid}}" class="btn btn-default">
-                                                                <i class="fa fa-bar-chart" data-hit="0" data-toggle="tooltip" data-original-title="" title=""></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="tabbable">
-                                                            <ul class="nav nav-tabs">
-                                                                <li class="active">
-                                                                    <a data-toggle="tab" href="#tab-partner" aria-expanded="true"><i class="fa fa-eye"></i>
-                                                                股东
-                                                                </a></li>
-                                                                <li class="">
-                                                                    <a data-toggle="tab" href="#tab-mostly" aria-expanded="false"><i class="fa fa-play"></i>
-                                                                主要人员
-                                                                </a></li>
-                                                                <li class="">
-                                                                    <a data-toggle="tab" href="#tab-relents" aria-expanded="false"><i class="fa fa-cc"></i>
-                                                                关联企业
-                                                                </a></li>
-                                                                <li class="">
-                                                                    <a data-toggle="tab" href="#tab-patent" aria-expanded="false"><i class="fa fa-history"></i>
-                                                                专利
-                                                                </a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="example-cell">
-                                                        <div class="tab-content">
-                                                            <div class="tab-pane active in" id="tab-partner">
-                                                                <ul class="list-unstyled" v-repeat="entpre: example.entprerelations">
-                                                                    <li>{{entpre.entpre}}</li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="tab-pane in" id="tab-mostly">
-                                                                <ul class="list-unstyled" v-repeat="entpre: example.entprerelations">
-                                                                    <li>{{entpre.entpre}}</li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="tab-pane in" id="tab-relents">
-                                                                <ul class="list-unstyled" v-repeat="entsrel: example.entsrelations">
-                                                                    <li>{{entsrel.entname}}</li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="tab-pane  in" id="tab-patent">
-                                                                <ul class="list-unstyled" v-repeat="patent: example.entpatents">
-                                                                    <li>{{patent.mc}}</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                        <div class="col-lg-3">
-                            <section>
-                                <div class="panel panel-default">
-                                    1
-                                    <br>
-                                    2
-                                    <br>
-
-                                    4
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
                 <div class="tab-pane fade active in" id="tab-overview">
                     <div class="row">
                         <div class="col-lg-9">

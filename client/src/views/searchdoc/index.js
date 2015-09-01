@@ -23,7 +23,6 @@ export default {
     },
     route: {
         data ({to: {params: {kw}}}) {
-            console.log(kw);
             this.kw = kw
             this.update()
         }

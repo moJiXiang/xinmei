@@ -6,11 +6,11 @@ export function configRouter (router) {
         '/search' : {
             component: require('./src/views/search')
         },
-        '/tree/:lcid': {
-            component: require('./src/views/tree')
-        },
         '/industrychart/:lcid': {
             component: require('./src/views/industry')
+        },
+        '/tree/:lcid': {
+            component: require('./src/views/tree')
         },
         '/dashboard': {
             component: require('./src/views/dashboard'),

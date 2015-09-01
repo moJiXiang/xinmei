@@ -10,6 +10,7 @@ export default {
 
     },
     compiled: function() {
+        console.log('控制台------------------');
         this.$root.isDashboard = true
     },
     methods: {

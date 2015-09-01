@@ -11,6 +11,7 @@ export default {
 
     },
     compiled: function() {
+        console.log('首页－－－－－－－－－－－－－－－－－');
         this.$root.isDashboard = false
     },
     methods: {
