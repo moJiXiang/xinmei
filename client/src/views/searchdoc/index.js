@@ -5,7 +5,9 @@ export default {
     data: function(){
         return {
             kw: null,
-            searchdocs: []
+            searchdocs: [],
+            showModal: false,
+            modalContent: null
         }
     },
     components: {
@@ -19,6 +21,11 @@ export default {
             this.$http.get(`${this.$root.config.api_url}/searchdocs/${this.kw}`, function (data) {
                 this.searchdocs = data.data
             })
+        },
+        show: function(content) {
+            console.log(content);
+            this.showModal = true
+            this.modalContent = content
         }
     },
     route: {

@@ -19,6 +19,9 @@ export default {
         },
         "login-form": function(resolve) {
             require(["./components/login-form"], resolve)
+        },
+        'show-modal': function(resolve) {
+            require(["./components/modal"], resolve)
         }
     },
     // TODO: how to add headers before each request
