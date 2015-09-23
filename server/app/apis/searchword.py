@@ -45,7 +45,7 @@ class SearchwordAPI(Resource):
         main = request.json.get('main')
         keyword = request.json.get('keyword')
         word = request.json.get('word')
-        kw = '%s %s %s' %(main, keyword, word)
+        kw = '\"%s %s %s\"' %(main, keyword, word)
         searchword = Searchword(main = main, keyword = keyword, word = word, kw = kw).save()
         return Status(200, 'success', convert2json(searchword)).result
 
