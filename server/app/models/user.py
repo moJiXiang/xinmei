@@ -25,7 +25,7 @@ class User(Document):
     def verify_password(self, password):
         return pwd_context.verify(password, self.password_hash)
 
-    def generate_auth_token(self, expiration=600):
+    def generate_auth_token(self, expiration=864000):
         s = TimedJSONWebSignatureSerializer(app.config["SECRET_KEY"], expires_in=expiration)
         print s.dumps({"email": self.email})
         return s.dumps({"email": self.email})

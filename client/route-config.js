@@ -26,7 +26,6 @@ export function configRouter (router) {
     })
 
     router.beforeEach((transition) => {
-        console.log(transition);
         if (transition.to.path === '/forbidden')     {
             router.app.showLogin = true
             router.go('/')

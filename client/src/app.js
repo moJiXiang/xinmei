@@ -2,14 +2,14 @@ require('./app.less')
 require('./less/ui.less')
 require('./less/animate.less')
 require('./less/common.less')
-import {config} from '../config'
+import {Config} from '../config'
 export default {
     template: require('./app.html'),
-    data: function() {
+    data() {
         return {
             showLogin: false,
             email: null,
-            messages: [],
+            messages: this.$messages,
             isDashboard: false
         }
     },
@@ -25,10 +25,10 @@ export default {
         }
     },
     // TODO: how to add headers before each request
-    compiled: function(){
+    compiled() {
         this.email = localStorage.getItem('email')
-        console.log(this);
-        this.$http.get(`${config["api_url"]}/checkactive`, function(data) {
+        console.log(this.$messages);
+        this.$http.get(`${this.$config["api_url"]}/checkactive`, function(data) {
             console.log(data);
         }, {
             headers: {
@@ -43,7 +43,7 @@ export default {
         })
     },
     methods: {
-        logout: function() {
+        logout() {
             this.email = null
             localStorage.removeItem('email')
             localStorage.removeItem('token')

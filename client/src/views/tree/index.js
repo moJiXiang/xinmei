@@ -22,22 +22,14 @@ export default {
     methods: {
         update: function() {
             let self = this
-            self.$http.get(`${self.$root.config.api_url}/enterprises/${self.lcid}`, function(data, status, request) {
+            self.$http.get(`${self.$config.api_url}/enterprises/${self.lcid}`, function(data, status, request) {
                 self.enterprise = data.data["enterprise"]
-            },{
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
             }).error(function(data){
                 self.$root.message.show('error', data["message"]);
             })
 
-            self.$http.get(`${self.$root.config.api_url}/tree/${self.lcid}`, function(data, status, request) {
+            self.$http.get(`${self.$config.api_url}/tree/${self.lcid}`, function(data, status, request) {
                 self.tree = data.data
-            }, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
             }).error(function(data) {
                 self.$root.message.show('error', data["message"]);
             })

@@ -2,7 +2,7 @@ require('./style.less')
 
 export default {
     template: require('./template.html'),
-    data: function(){
+    data() {
         return {
             enterprisename: null,
             enterprises: null,
@@ -28,55 +28,43 @@ export default {
     components: {
 
     },
-    compiled: function() {
+    compiled() {
         this.$root.isDashboard = false
         this.getExitWords()
         this.getSearchwords()
     },
     methods: {
-        getEntsList: function() {
-            this.$http.get(`${this.$root.config.api_url}/enterprises`, function(data, status, request) {
+        getEntsList() {
+            this.$http.get(`${this.$config.api_url}/enterprises`, (data, status, request)=> {
                 this.$set('enterprises', data.data)
-            }, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
-            }).error(function(data, status, request) {
+            }).error((data, status, request)=> {
 
             })
         },
-        tabEnterprise: function(lcid) {
-            this.$http.get(`${this.$root.config.api_url}/enterprises/${lcid}`, function(data, status, request) {
+        tabEnterprise(lcid) {
+            this.$http.get(`${this.$config.api_url}/enterprises/${lcid}`, (data, status, request)=> {
                 this.$set('example', data.data)
-            }, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
-            }).error(function(data, status, request) {
+            }).error((data, status, request)=> {
 
             })
         },
-        startProject: function(entname) {
-            this.$http.get(`${this.$root.config.api_url}/grabentlist?entname=${entname}`, function(data, status, request) {
+        startProject(entname) {
+            this.$http.get(`${this.$config.api_url}/grabentlist?entname=${entname}`, (data, status, request)=> {
 
             })
         },
-        queryEntsByName: function(e) {
+        queryEntsByName(e) {
             e.preventDefault()
-            this.$http.get(`${this.$root.config.api_url}/enterprises?name=${this.enterprisename}`, function(data, status, request) {
+            this.$http.get(`${this.$config.api_url}/enterprises?name=${this.enterprisename}`, (data, status, request)=> {
                 this.$set('enterprises', data.data)
-            }, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
-            }).error(function(data, status, request) {
+            }).error((data, status, request)=> {
 
             })
         },
-        queryEntsFromQy: function(e) {
+        queryEntsFromQy(e) {
             e.preventDefault()
             let self = this
-            self.$http.get(`${this.$root.config.api_url}/searchqy?entname=${self.entname}`, function(data, status, request) {
+            self.$http.get(`${this.$config.api_url}/searchqy?entname=${self.entname}`, (data, status, request)=> {
                 console.log(data);
                 var results = data.data
                 for (var ent of results) {
@@ -85,91 +73,76 @@ export default {
                 }
                 console.log(self.qySearchResults);
                 self.qySearchResults=results
-            }, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
-            }).error(function(data, status, request) {
+            }).error((data, status, request)=> {
 
             })
         },
-        grabqy: function(ent) {
+        grabqy(ent) {
             let lcid = ent.lcid
             let self = this
-            self.$http.get(`${this.$root.config.api_url}/grab/${lcid}`, function(data, status, request) {
+            self.$http.get(`${this.$config.api_url}/grab/${lcid}`, (data, status, request)=> {
                 ent.downloading = true
-            }, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
-            }).error(function(data, status, request) {
+            }).error((data, status, request)=> {
 
             })
         },
-        addToDownloadList: function(entname, lcid) {
+        addToDownloadList(entname, lcid) {
             obj = {
                 entname: entname,
                 lcid: lcid
             }
             this.downloadlist.push(obj)
         },
-        sendTasks: function() {
-            this.$http.post(`${this.$root.config.api_url}/grab`, {downloadlist: this.downloadlist}, function(data, status, request) {
+        sendTasks() {
+            this.$http.post(`${this.$config.api_url}/grab`, {downloadlist: this.downloadlist}, (data, status, request)=> {
 
-            }, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
-            }).error(function(data, status, request) {
+            }).error((data, status, request)=> {
 
             })
         },
         // 增加词团的关键词
-        addKeyWords: function(e) {
+        addKeyWords(e) {
             e.preventDefault()
-            this.$http.post(`${this.$root.config.api_url}/words`, this.newwords, function(data) {
+            this.$http.post(`${this.$config.api_url}/words`, this.newwords, (data)=> {
                 console.log(data)
                 this.exitwords.push(data.data)
             })
         },
         // 修改词团的主题部分
-        modifyWords: function(word) {
+        modifyWords(word) {
             this.currentWord = word
         },
-        addWord: function(e) {
+        addWord(e) {
             e.preventDefault()
             console.log(this.currentWord);
             this.currentWord.words.push(this.newword)
-            this.$http.put(`${this.$root.config.api_url}/words/${this.currentWord._id.$oid}`, this.currentWord, function(data) {
+            this.$http.put(`${this.$config.api_url}/words/${this.currentWord._id.$oid}`, this.currentWord, (data)=> {
                 // this.exitwords = data.data
             })
         },
         // 获取数据库中的词团
-        getExitWords: function(e) {
-            this.$http.get(`${this.$root.config.api_url}/words`, function(data) {
+        getExitWords(e) {
+            this.$http.get(`${this.$config.api_url}/words`, (data)=> {
                 this.exitwords = data.data
             })
         },
 
-        addSearchWord: function(e) {
+        addSearchWord(e) {
             e.preventDefault()
-            console.log(this.searchword)
-            this.$http.post(`${this.$root.config.api_url}/searchwords`, this.searchword, function(data) {
+            this.$http.post(`${this.$config.api_url}/searchwords`, this.searchword, (data)=> {
                 this.searchwords.push(data.data)
             })
         },
 
-        selectWord: function() {
-            console.log('---------------');
-            console.log(this.searchword);
+        selectWord() {
             var keyword = this.searchword.keyword
-            this.$http.get(`${this.$root.config.api_url}/words?keyword=${keyword}`, function(data) {
+            this.$http.get(`${this.$config.api_url}/words?keyword=${keyword}`, (data)=> {
                 this.words = data.data[0].words
             })
         },
 
-        getSearchwords: function() {
-            this.$http.get(`${this.$root.config.api_url}/searchwords`, function(data) {
+        getSearchwords() {
+            this.$http.get(`${this.$config.api_url}/searchwords`, (data)=> {
                 this.searchwords = data.data
             })
         }

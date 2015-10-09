@@ -19,10 +19,6 @@ export default {
                 if(data)
                     self.show = true
                     self.$set('enterprises', data.data)
-            }, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
             }).error(function (data, status, request) {
 
             })

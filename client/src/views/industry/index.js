@@ -19,12 +19,8 @@ export default {
     methods: {
         update: function() {
             let self = this
-            self.$http.get(`${this.$root.config.api_url}/industrychart/${self.lcid}`, function(data, status, request) {
+            self.$http.get(`${this.$config.api_url}/industrychart/${self.lcid}`, function(data, status, request) {
                 self.industry = data.data
-            }, {
-                headers: {
-                    'Authorization': localStorage.getItem('token')
-                }
             })
         }
     },

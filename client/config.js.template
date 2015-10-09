@@ -1,7 +1,8 @@
-export function configFactory(app) {
-    return app.config = config
+const install = (Vue, options)=> {
+    Vue.prototype.$config = {
+        'api_url': 'http://127.0.0.1:3200/api/v1',
+        'api_uri': '/api/v1'
+    }
 }
-var config = exports.config = {
-    'api_url': 'http://117.121.25.124:81/api/v1',
-    'api_uri': '/api/v1'
-}
+
+export default install;

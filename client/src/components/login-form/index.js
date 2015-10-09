@@ -1,8 +1,7 @@
 require('./style.less')
-// config = require('../../config')
 export default {
     template: require('./template.html'),
-    data: function() {
+    data() {
         return {
             loginTab: true,
             error: false,
@@ -19,51 +18,48 @@ export default {
             hasCaptcha: false
         }
     },
-    compiled: function(){
+    compiled(){
         // console.log('test login');
     },
     methods: {
-        shakeError: function() {
+        shakeError() {
             this.error = true
-            setTimeout(function() {
+            setTimeout(()=>{
                 this.error = false
-            }.bind(this), 1000)
+            }, 1000)
         },
-        login: function(e) {
+        login(e) {
             e.preventDefault()
-            let self = this
-            self.$http.post(`${self.$root.config["api_url"]}/login`, self.user, function(data, status, request){
-                self.$root.showLogin = false
-                self.$root.email = self.user["email"]
-                localStorage.setItem('email', self.user["email"])
+            this.$http.post(`${this.$config["api_url"]}/login`, this.user, function(data, status, request){
+                this.$root.showLogin = false
+                this.$root.email = this.user["email"]
+                localStorage.setItem('email', this.user["email"])
                 localStorage.setItem('token', data.data["token"])
 
             }).error(function(data, status, request) {
-                self.shakeError()
-                self.$root.message.show('error', data["message"]);
+                this.shakeError()
+                this.$show('error', data["message"]);
             })
         },
-        getCaptcha: function(e) {
+        getCaptcha(e) {
             e.preventDefault()
-            let self = this
-            self.$http.post(`${self.$root.config["api_url"]}/sendemail`,self.register, function(data, status, request) {
-                self.hasCaptcha = true
+            this.$http.post(`${this.$config["api_url"]}/sendemail`,this.register, function(data, status, request) {
+                this.hasCaptcha = true
             }).error(function(data, status, request) {
-                self.shakeError()
-                self.$root.message.show('error', data["message"]);
+                this.shakeError()
+                this.$root.message.show('error', data["message"]);
             })
         },
-        signup: function(e) {
+        signup(e) {
             e.preventDefault()
-            let self = this
-            self.$http.post(`${self.$root.config["api_url"]}/users`, self.register, function(data, status, request) {
-                self.$root.showLogin = false
-                self.$root.email = self.register["email"]
-                localStorage.setItem('email', self.register["email"])
+            this.$http.post(`${this.$config["api_url"]}/users`, this.register, function(data, status, request) {
+                this.$root.showLogin = false
+                this.$root.email = this.register["email"]
+                localStorage.setItem('email', this.register["email"])
                 localStorage.setItem('token', data.data["token"])
             }).error(function(data, status, request) {
-                self.shakeError()
-                self.$root.message.show('error', data["message"]);
+                this.shakeError()
+                this.$root.message.show('error', data["message"]);
             })
         }
     },
