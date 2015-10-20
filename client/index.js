@@ -12,6 +12,7 @@ Vue.use(Config)
 Vue.use(Utils)
 // add Authorization token to http headers
 Vue.http.headers.common['Authorization'] = localStorage.getItem('token')
+
 const App = Vue.extend(require('./src/app.js'))
 const router = new VueRouter({})
 

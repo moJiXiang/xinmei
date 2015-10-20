@@ -2,24 +2,23 @@ require('./style.less')
 
 export default {
     template: require('./template.html'),
-    data: function(){
+    data() {
 
     },
     components: {
 
     },
-    compiled: function() {
+    compiled() {
         this.$root.isDashboard = false
     },
     methods: {
-        queryEntsByName: function(e) {
+        queryEntsByName(e) {
             e.preventDefault()
-            let self = this
-            self.$http.get(`${self.$root.config.api_url}/enterprises?name=${self.enterprise}`, function(data, status, request) {
+            this.$http.get(`${this.$config.api_url}/enterprises?name=${this.enterprise}`, (data, status, request)=> {
                 if(data)
-                    self.show = true
-                    self.$set('enterprises', data.data)
-            }).error(function (data, status, request) {
+                    this.show = true
+                    this.$set('enterprises', data.data)
+            }).error((data, status, request)=> {
 
             })
         }

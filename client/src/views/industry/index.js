@@ -4,31 +4,28 @@ import {draw} from './industry.js'
 
 export default {
     template: require('./template.html'),
-    data: function(){
+    data() {
         return {
-            industry: null,
-            lcid: null
+            industry: null
         }
     },
-    ready: function() {
-        this.$watch('industry', (value, mutation)=> draw(value))
+    ready() {
+
     },
-    compiled: function() {
+    compiled() {
         this.$root.isDashboard = false
     },
     methods: {
-        update: function() {
-            let self = this
-            self.$http.get(`${this.$config.api_url}/industrychart/${self.lcid}`, function(data, status, request) {
-                self.industry = data.data
+        update(lcid) {
+            this.$http.get(`${this.$config.api_url}/industrychart/${lcid}`, (data, status, request)=> {
+                // this.industry = data.data
+                draw(data.data)
             })
         }
     },
     route: {
         data ({to: {params: {lcid}}}) {
-            console.log(lcid);
-            this.lcid = lcid
-            this.update()
+            this.update(lcid)
         }
     }
 }

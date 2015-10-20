@@ -18,7 +18,7 @@ export default {
     },
     methods: {
         update: function () {
-            this.$http.get(`${this.$root.config.api_url}/searchdocs/${this.kw}`, function (data) {
+            this.$http.get(`${this.$config["api_url"]}/searchdocs/${this.kw}`, function (data) {
                 this.searchdocs = data.data
             })
         },

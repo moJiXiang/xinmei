@@ -25,11 +25,11 @@
 const install = (Vue, options)=> {
     let clock
     let messages = Vue.prototype.$messages = []
-    Vue.prototype.$flush = ()=> messages = []
-    Vue.prototype.$clear = (index)=> {
+    let flush = ()=> messages = []
+    let clear = (index)=> {
         clearTimeout(clock)
         messages.splice(index, 1)
-        clock = setTimeout(()=> messages = [], 4000)
+        clock = setTimeout(()=> flush, 4000)
     }
     Vue.prototype.$show = (type, text)=> {
         let msg = {
@@ -39,7 +39,7 @@ const install = (Vue, options)=> {
         if (!unique(msg, messages)) return
         messages.push(msg)
         let index = messages.length - 1
-        setTimeout(()=> Vue.prototype.$clear(index), 3000)
+        setTimeout(()=> clear(index), 3000)
     }
 }
 

@@ -69,6 +69,7 @@
       return appendEntname();
     };
     setupData = function(data) {
+      entindustryArr = []
       var j, max, min, num, obj, ref;
       data.nodes.forEach(function(n) {
         if (titles.indexOf(n.entindustry) < 0) {

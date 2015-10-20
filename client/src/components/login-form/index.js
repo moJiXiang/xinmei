@@ -1,4 +1,6 @@
 require('./style.less')
+import Vue from 'vue'
+
 export default {
     template: require('./template.html'),
     data() {
@@ -35,6 +37,8 @@ export default {
                 this.$root.email = this.user["email"]
                 localStorage.setItem('email', this.user["email"])
                 localStorage.setItem('token', data.data["token"])
+                // add Authorization token to http headers
+                Vue.http.headers.common['Authorization'] = data.data["token"]
 
             }).error(function(data, status, request) {
                 this.shakeError()
@@ -47,7 +51,7 @@ export default {
                 this.hasCaptcha = true
             }).error(function(data, status, request) {
                 this.shakeError()
-                this.$root.message.show('error', data["message"]);
+                this.$show('error', data["message"]);
             })
         },
         signup(e) {
@@ -59,7 +63,7 @@ export default {
                 localStorage.setItem('token', data.data["token"])
             }).error(function(data, status, request) {
                 this.shakeError()
-                this.$root.message.show('error', data["message"]);
+                this.$show('error', data["message"]);
             })
         }
     },

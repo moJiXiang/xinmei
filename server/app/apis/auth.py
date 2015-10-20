@@ -48,10 +48,12 @@ class LoginAPI(Resource):
         user = User.objects(email=email).first()
         if user is None:
             return make_error(404, 'user is not exit!')
+        print user.verify_password(password)
         if user.verify_password(password):
             token = user.generate_auth_token()
             return Status(200, 'success', {'token': token}).result
-
+        else:
+            return make_error(401, 'Unauthorized Access!')
 
 class TokenAPI(Resource):
     @auth.login_required
@@ -72,14 +74,14 @@ class SendEmailAPI(Resource):
         if User.objects(email = email).first() is not None:
             return make_error(400, 'exiting user!')
         else:
-            user = User(email=email, captcha=captcha)
-            user.save()
             try:
                 mail.send(msg)
             except Exception as e:
                 # TODO: how to format e detail message to string
                 return make_error(400, 'Mailbox not found or access denied')
             else:
+                user = User(email=email, captcha=captcha)
+                user.save()
                 return Status(200, 'success', 'send captcha to your email').result
 
 
