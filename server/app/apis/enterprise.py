@@ -14,7 +14,7 @@ from app.status import Status
 from app.helper import authorized
 
 class EnterpriseAPI(Resource):
-    @authorized
+    # @authorized
     @cache.cached(timeout=60)
     def get(self, lcid):
         enterprise = Enterprise.objects(lcid=lcid).first()
@@ -37,7 +37,7 @@ class EnterpriseAPI(Resource):
         return json.loads(obj.to_json()) if obj is not None else None
 
 class EnterpriseListAPI(Resource):
-    @authorized
+    # @authorized
     def get(self):
         name = request.args.get('name')
         # 从本地数据库中得到数据
@@ -57,7 +57,7 @@ class IndustryChartAPI(Resource):
         self.deep = 1
         self.results = {}
     # @cache.cached(timeout=60)
-    @authorized
+    # @authorized
     def get(self, lcid):
         self.getRelEnts(lcid)
         self.addDeep(lcid, self.rawdata, None)
@@ -115,7 +115,7 @@ class IndustryChartAPI(Resource):
 
 class TreeAPI(Resource):
     @cache.cached(timeout=60)
-    @authorized
+    # @authorized
     def get(self, lcid):
         # 得到当前公司的关联企业
         arrs = []

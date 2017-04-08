@@ -34,7 +34,7 @@ class UserAPI(Resource):
         return Status(201, 'success', {'token': token}).result
 
 class CheckActiveAPI(Resource):
-    @authorized
+    # @authorized
     def get(self):
         return Status(200, 'success', None).result
 

@@ -1,15 +1,14 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin")
+var path = require('path')
 
 module.exports = {
-    // entry: {
-    //     index:  "./index.js"
-    //
-    // },
-    entry: './index.js',
-    // entry: ["webpack/hot/dev-server",'./index.js'],
+    entry: {
+        build:  path.join(__dirname, 'index.js')
+    },
+    node: {
+        __dirname: true
+    },
     output: {
-        path: "./build",
-        publicPath: "/build/",
+        path: path.join(__dirname, "build"),
         filename: "build.js"
     },
     module: {
@@ -18,20 +17,22 @@ module.exports = {
             loader: "babel-loader"
         }, {
             test: /\.html$/,
-            loader: "html"
+            loader: "html-loader"
         }, {
             test: /\.(jpg|png|svg)$/,
             loader: "url?limit=8192"
         }, {
             test: /\.less$/,
-            loader: ExtractTextPlugin.extract("style-loader",
-                "css-loader!less-loader")
+            loader: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "less-loader" // compiles Less to CSS
+            }]
         }]
     },
     resolve: {
-        extensions: ['', '.js', '.json', '.coffee', '.less', '.css']
-    },
-    plugins: [
-        new ExtractTextPlugin("style.css")
-    ]
+        extensions: ['.js', '.json', '.coffee', '.less', '.css']
+    }
 }
