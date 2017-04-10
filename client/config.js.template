@@ -1,6 +1,6 @@
 const install = (Vue, options)=> {
     Vue.prototype.$config = {
-        'api_url': 'http://45.77.28.68/api/v1',
+        'api_url': 'http://45.77.27.215//api/v1',
         'api_uri': '/api/v1'
     }
 }
