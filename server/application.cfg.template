@@ -4,8 +4,8 @@ DEBUG = True
 MONGODB_HOST = 'localhost'
 MONGODB_PORT = 27017
 MONGODB_DB = 'xinmei-cms'
-MONGODB_USERNAME = 'xinmei'
-MONGODB_PASSWORD = 'xinmei'
+# MONGODB_USERNAME = 'xinmei'
+# MONGODB_PASSWORD = 'xinmei'
 
 SECRET_KEY = 'mojixiang'
 
