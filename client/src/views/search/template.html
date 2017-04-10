@@ -8,7 +8,9 @@
         <div class="results-w" v-if="show" v-transition>
             <ul class="results list-unstyled">
                 <li v-repeat="enterprises">
-                    <a href="#/tree/{{lcid}}">{{entname}}</a>
+                    <i>{{entname}}</i>
+                    <a href="#/tree/{{lcid}}">树状图</a>
+                    <a href="#/industrychart/{{lcid}}">气泡图</a>
                 </li>
             </ul>
         </div>
